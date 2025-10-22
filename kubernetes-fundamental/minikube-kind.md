@@ -17,47 +17,43 @@ Minikube cocok digunakan untuk:
 
 Jalankan perintah berikut untuk menginstall Minikube di Linux:
 
-```b
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-sudo install minikube-linux-amd64 /usr/local/bin/minikube
+```
+root@SRV-1:~$ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+root@SRV-1:~$ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 ```
 
 Tambahkan user ke grup docker agar dapat menjalankan Minikube dengan driver Docker
 ```
-usermod -aG docker ideastea
-su - ideastea
+root@SRV-1:~$ usermod -aG docker ideastea
+root@SRV-1:~$ su - ideastea
 ```
 
 Mulai Minikube menggunakan driver Docker:
 ```
-minikube start --driver=docker
+lab@SRV-1:~$ minikube start --driver=docker
 ```
 
 Cek status node Kubernetes yang berjalan:
 ```
-kubectl get node
-kubectl describe node minikube
+lab@SRV-1:~$ kubectl get node
+lab@SRV-1:~$ kubectl describe node minikube
 ```
 
 ### 📦 Instalasi Kubectl
 
 Agar dapat berinteraksi dengan cluster Kubernetes, install kubectl menggunakan perintah berikut:
 ```
-apt install -y apt-transport-https ca-certificates curl gpg
-mkdir -p /etc/apt/keyrings
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.34/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.34/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
-apt update
-apt install kubectl -y
+root@SRV-1:~$ apt install -y apt-transport-https ca-certificates curl gpg
+root@SRV-1:~$ mkdir -p /etc/apt/keyrings
+root@SRV-1:~$ curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.34/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+root@SRV-1:~$ echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.34/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
+root@SRV-1:~$ apt update
+root@SRV-1:~$ apt install kubectl -y
 ```
 
 Jika berhasil, jalankan perintah berikut untuk memastikan node sudah aktif:
 ```
-kubectl get nodes
-```
-
-Contoh hasil:
-```
+lab@SRV-1:~$ kubectl get nodes
 NAME       STATUS   ROLES           AGE    VERSION
 minikube   Ready    control-plane   5m2s   v1.34.0
 ```
