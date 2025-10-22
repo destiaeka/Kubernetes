@@ -39,7 +39,7 @@ lab@SRV-1:~$ kubectl exec -it curl -- /bin/bash
 / # curl http://10.108.21.93:8080
 ```
 
-ip terlihat saat memasukkan perintah ```bash kubectl get all`` maka ada ClusterIP pada service. namun selain itu juga bisa menggunakan
+ip terlihat saat memasukkan perintah ```kubectl get all``` maka ada ClusterIP pada service. namun selain itu juga bisa menggunakan
 - env
 - DNS
 berikut langkah langkahnya
@@ -57,7 +57,7 @@ NGINX_SERVICE_PORT_8080_TCP=tcp://10.108.21.93:8080
 / # curl http://10.108.21.93:8080
 ```
 
-apabila menggunakan DNS maka formatnnya adalah ```bash namaservice.namespace.scv.cluster.local:port ```
+apabila menggunakan DNS maka formatnnya adalah ```namaservice.namespace.scv.cluster.local:port ``` <br>
 / # curl http://nginx-service.default.svc.cluster.local:8080
 
 ## ⚙️ Endpoint
