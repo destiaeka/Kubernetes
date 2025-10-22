@@ -1,19 +1,52 @@
-Kubernetes adalah platform orchestration container yang bersifat open sorce. Tujuannya untuk menotomatisasikan deployment, scaling, dan manajemen aplikasi berbasis container. Contohnya docker
+# 🚀 Kubernetes
+
+**Kubernetes** adalah platform *container orchestration* yang bersifat **open source**.  
+Tujuannya untuk **mengotomatisasi deployment, scaling, dan manajemen aplikasi berbasis container** — contohnya seperti Docker.
 
 ![Architecture](architecture.svg)
 
-> **Kubernetes Master (Control Plane)**
-Bertugas untuk mengatur dan mengcontroll cluster. tidak langsung menjalankan app user. menjalankan beberapa component penting seperti API, etcd, Control Manager, Scheduller, Cloud Controller. Kaya ibaratnya ini tuh otaknya jadi ngasih perintah aja ga bener bener langsung menjalankan
-- API Server: Sebagai gerbang komunikasi antara kubernetes master dengan cluster
-- etcd: menyimpan data kubernetes cluster. seperti databasenya kubernetes
-- ControllManager: melakukan controll terhadap seluruh kubernetes cluster. misalnya mendeteksi node yang mati/rusak/baru. dia kaya mengcontrol cluster
-- Kube Scheduller: memperhatikan aplikasi yang sedang berjalan dan meminta untuk menjalankan aplikasi yang kita jalankan. seperti kaya app ini harus running nodes mana nah ini tugasnya scheduler        
-- Cloud controller: melakukan control interaksi dengan cloud provider. misalnya dijalankan di data center/cloud provider nah ini yang melakukan control
+---
 
-> **Kubernetes Nodes (Worker Nodes)**
-Menjalankan container. tiap nodes(worker) punya kubelet, kubeproxy, container manager. Ibaratnya dia tuh karyawan yang menjalankan perintah dari Control Plane (Master Node)
-- kubelet: menjalankan aplikasi berjalan di node. nah si kubelet ini di controll oleh controll manager di control plane. Nah kubelet ini pernode jadi misalnya ada 1000 node maka ada 1000 lubelet
-- kube-proxy: ini mengatur terkait trafic misalnya app apa aja yang bisa menerima trafic. selain itu juga bisa jadi load balance. sebelum langsung akses ke app harus melalui kubeproxy dulu
-- container manager: bertugas sebagai container manager di setiap node. contohnya docker
+## 🧠 Kubernetes Master (Control Plane)
 
-**Jadi lingkungan dimana kubernetes dijalankan itu disebut Cluster. nah didalam cluster ada node. Yang pertama Master node atau sekarang disebut control plane dia itu tugasnya ngatur dan controll. lalu ada worker nodes, nah ini tempat dimana app dijalankan jadi dialah yang menjalakan perintah dari control plane **
+Bagian ini bertugas untuk **mengatur dan mengontrol seluruh cluster**.  
+Control Plane **tidak menjalankan aplikasi user secara langsung**, tapi mengatur bagaimana dan di mana aplikasi tersebut dijalankan.
+
+Ibaratnya, Control Plane adalah **otak** dari Kubernetes — memberi perintah, bukan yang bekerja langsung.
+
+Komponen utamanya meliputi:
+
+- **API Server** → Gerbang komunikasi antara Control Plane dengan seluruh komponen di cluster.  
+- **etcd** → Tempat penyimpanan seluruh data cluster, seperti *database*-nya Kubernetes.  
+- **Controller Manager** → Mengontrol status cluster, misalnya mendeteksi node yang mati, rusak, atau baru bergabung.  
+- **Kube Scheduler** → Menentukan *node* mana yang akan menjalankan suatu aplikasi (*pod*).  
+- **Cloud Controller** → Mengatur interaksi Kubernetes dengan *cloud provider* (misalnya AWS, GCP, Azure).
+
+---
+
+## ⚙️ Kubernetes Nodes (Worker Nodes)
+
+Bagian ini bertugas untuk **menjalankan container aplikasi**.  
+Setiap *node* (worker) memiliki beberapa komponen utama: `kubelet`, `kube-proxy`, dan *container manager*.  
+Ibaratnya, worker node adalah **karyawan** yang menjalankan perintah dari Control Plane.
+
+Komponennya meliputi:
+
+- **Kubelet** → Menjalankan aplikasi (pod) pada node.  
+  Tiap node punya kubelet-nya sendiri, misalnya kalau ada 1000 node berarti ada 1000 kubelet.  
+- **Kube-proxy** → Mengatur lalu lintas jaringan (traffic) ke dalam dan luar pod.  
+  Bisa berfungsi sebagai *load balancer* internal.  
+- **Container Manager** → Mengelola container yang berjalan di node, contohnya Docker atau containerd.
+
+---
+
+## 🧩 Konsep Utama
+
+> **Cluster** adalah lingkungan tempat Kubernetes dijalankan.  
+> Di dalam cluster terdapat dua jenis node:
+>
+> - **Control Plane (Master Node)** → Mengatur dan mengontrol keseluruhan sistem.  
+> - **Worker Node** → Menjalankan aplikasi sesuai instruksi dari Control Plane.
+
+---
+
