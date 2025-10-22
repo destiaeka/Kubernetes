@@ -6,6 +6,8 @@ Service memiliki **IP dan port yang tetap** selama service tersebut ada, sehingg
 
 Client akan mengakses **IP service**, lalu service akan meneruskan traffic tersebut ke pod-pod yang terhubung di belakangnya.
 
+![Service](image/service.jpg)
+
 ---
 
 ## ⚙️ Fungsi Utama
