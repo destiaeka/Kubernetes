@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: replication
+  labels:
+    label: replication-controller
+  annotations:
+    description: replication controller test
+spec:
+  replicas: 3
+  selector:
+    name: rc-nginx
+  template:
+    metadata:
+      name: replication
+      labels:
+        name: rc-nginx
+    spec:
+      containers:
+        - name: rc-nginx
+          image: nginx
+          ports:
+            - name: web
+              containerPort: 80
