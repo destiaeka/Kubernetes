@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          nodeSelector:
+            gpu: "true"
+          containers:
+          - name: yaallah
+            image: busybox
+            command: ["echo","hai desss"]
+          restartPolicy: Never
