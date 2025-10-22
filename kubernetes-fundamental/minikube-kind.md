@@ -73,5 +73,5 @@ Kind cocok digunakan untuk:
 
 ### ⚙️ Kesimpulan:
 
-> Gunakan **Minikube** jika kamu ingin simulasi cluster nyata seperti di server produksi.
-> Gunakan **Kind** jika kamu ingin testing cepat di lingkungan pengembangan atau CI/CD pipeline.
+> - Gunakan **Minikube** jika kamu ingin simulasi cluster nyata seperti di server produksi.
+> - Gunakan **Kind** jika kamu ingin testing cepat di lingkungan pengembangan atau CI/CD pipeline.
