@@ -1,6 +1,6 @@
 Kubernetes adalah platform orchestration container yang bersifat open sorce. Tujuannya untuk menotomatisasikan deployment, scaling, dan manajemen aplikasi berbasis container. Contohnya docker
 
-![Architecture](image/architecture.svg)
+![Architecture](architecture.svg)
 
 > **Kubernetes Master (Control Plane)**
 Bertugas untuk mengatur dan mengcontroll cluster. tidak langsung menjalankan app user. menjalankan beberapa component penting seperti API, etcd, Control Manager, Scheduller, Cloud Controller. Kaya ibaratnya ini tuh otaknya jadi ngasih perintah aja ga bener bener langsung menjalankan
