@@ -59,7 +59,7 @@ lab@SRV-1:~$ minikube service nodeport
 
 
 
-## ⚖️ LOAD BALANCER
+## ⚖️ LOADBALANCER
 ## 📘 Deskripsi
 **LoadBalancer** adalah tipe *Service* di Kubernetes yang digunakan untuk **menyediakan akses dari luar cluster (eksternal)** dengan bantuan **load balancer bawaan dari cloud provider** seperti AWS, GCP, Azure, atau platform lain yang mendukungnya.
 
