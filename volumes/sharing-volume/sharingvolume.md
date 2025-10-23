@@ -6,7 +6,7 @@ Dengan begitu, container-container tersebut bisa **berbagi data** melalui direkt
 
 Contohnya, satu container membuat file, dan container lain membaca atau memproses file tersebut.
 
-![Architecture](images/sharingvolume.jpg)
+![Architecture](../images/sharingvolume.jpg)
 
 ---
 
