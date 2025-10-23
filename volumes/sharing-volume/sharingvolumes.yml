@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: sharingvolume
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: sharingvolumes
+  template:
+    metadata:
+      name: sharing volumes
+      labels:
+        name: sharingvolumes
+    spec:
+      volumes:
+        - name: sharing
+          emptyDir: {}
+      containers:
+        - name: nodejs-sv
+          image: khannedy/nodejs-writer
+          volumeMounts:
+            - name: sharing
+              mountPath: /app/html
+        - name: nginx-sv
+          image: nginx
+          volumeMounts:
+            - name: sharing
+              mountPath: /usr/share/nginx/html
+          ports:
+            - containerPort: 80
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: sharing-volume-service
+spec:
+  type: NodePort
+  selector:
+    name: sharingvolumes
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30001
