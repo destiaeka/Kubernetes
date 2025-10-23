@@ -1,0 +1,106 @@
+#DEPLOYMENT FRONTEND
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: rc-frontend
+  labels:
+    label: frontend
+  annotations:
+    description: replication controller frontend
+spec:
+  replicas: 3
+  selector:
+    name: frontend
+  template:
+    metadata:
+      name: frontend
+      labels:
+        name: frontend
+    spec:
+      containers:
+        - name: nginx-frontend
+          image: nginx
+          ports:
+            - containerPort: 80
+
+---
+#SERVICE FRONTEND
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-nginx-frontend
+spec:
+  selector:
+    name: frontend
+  ports:
+    - port: 80
+      targetPort: 80
+
+---
+
+#DEPLOYMENT BACKEND
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: rc-backend
+  labels:
+    label: backend
+  annotations:
+    description: replication controller backend
+spec:
+  replicas: 3
+  selector:
+    name: backend
+  template:
+    metadata:
+      name: backend
+      labels:
+        name: backend
+    spec:
+      containers:
+        - name: nginx-backend
+          image: hashicorp/http-echo
+          args:
+            - "-text=This is backend service"
+          ports:
+            - containerPort: 5678
+---
+
+#SERVICE BACKEND
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-nginx-backend
+spec:
+  selector:
+    name: backend
+  ports:
+    - port: 8080
+      targetPort: 5678
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  labels:
+    name: nginx-ingress
+spec:
+  rules:
+    - host: nginx.destiaeka.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: service-nginx-frontend
+                port:
+                  number: 80
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: service-nginx-backend
+                port:
+                  number: 8080
