@@ -3,7 +3,7 @@
 ## 📘 Deskripsi
 Saat menggunakan **docker** biasanya **1 container** digunakan untuk **1 aplikasi**. nah di **Kubernetes** berbeda **1 pod** bisa terdapat **beberapa container**. container container itu dapat berbegi resource (network & storage) dan saling bantu menjalankan fungsinya
 
-![architecture](image/architecture.jpg)
+![architecture](images/architecture.jpg)
 
 # ⚙️ Konfigurasi
 Disini saya akan membuat manifest dimana akan membuat 2 container (nodeja & nginx) pada 1 pod
