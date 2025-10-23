@@ -1,0 +1,52 @@
+lab@SRV-1:~$ cat multi-container.yml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replicasrt
+  labels:
+    name: replicaset
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: multi-container
+  template:
+    metadata:
+      labels:
+        name: multi-container
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+          - containerPort: 80
+      - name: nodejs
+        image: khannedy/nodejs-web
+        ports:
+          - containerPort: 3000
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: service
+spec:
+  selector:
+    name: multi-container
+  ports:
+    - port: 8080
+      targetPort: 80
+      name: nginx
+    - port: 3000
+      targetPort: 3000
+      name: nodejs
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: curl
+spec:
+  containers:
+  - name: curl
+    image: destiaeka/nginx-curl
