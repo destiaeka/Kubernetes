@@ -22,7 +22,7 @@ Deployment → Service → pod
 ```
 
 ## 📦Konfigurasi
-````
+```
 lab@SRV-1:~$ nano deployment.yml
 lab@SRV-1:~$ kubectl apply -f deployment.yml
 deployment.apps/nodejs-deployment created
@@ -52,5 +52,5 @@ lab@SRV-1:~$ minikube service service-deployment
 👉  http://192.168.76.2:30001
 ```
 
-### ⚙️ Kesimpulan:
+## ⚙️ Kesimpulan:
 > - jadi nantinya deployment akan terbuat > setelah itu replicaset > nah replicaset yang akan memanajemen pod
