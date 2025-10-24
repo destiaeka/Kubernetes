@@ -14,7 +14,8 @@ Rollback memudahkan proses pemulihan karena:
 ---
 
 ## 🧠 Perintah Rollback
-rollout hanya mendukung beberapa resource untuk mengetahuinya gunakan perintah ```kubectl rollout
+rollout hanya mendukung beberapa resource untuk mengetahuinya gunakan perintah ```kubectl rollout```
+```
 lab@SRV-1:~$ kubectl rollout
 Manage the rollout of one or many resources.
 
