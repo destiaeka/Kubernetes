@@ -1,4 +1,3 @@
-lab@SRV-1:~$ cat multi-container.yml
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
