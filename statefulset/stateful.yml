@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-sfs
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data/location
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sfs
+spec:
+  serviceName: nodejs-sfs
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nodejs-sfs
+  template:
+    metadata:
+      labels:
+        app: nodejs-sfs
+    spec:
+      containers:
+      - name: nodejs-sfs
+        image: khannedy/nodejs-stateful
+        env:
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+        volumeMounts:
+          - mountPath: /app/data
+            name: nodejs-pvc
+  volumeClaimTemplates:
+    - metadata:
+        name: nodejs-pvc
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        volumeMode: Filesystem
+        resources:
+          requests:
+            storage: 1Gi
